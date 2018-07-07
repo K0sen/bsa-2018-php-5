@@ -9,15 +9,20 @@ class CurrencyGenerator
     public const IMG_PREFIX = "https://s2.coinmarketcap.com/static/img/coins/64x64/";
     private const COUNT = 10;
 
+    /**
+     * Gets list of cryptocurrencies from api of coinmarketcap.com
+     *
+     * @return Currency[]
+     */
     public static function generate(): array
     {
 //        $apiCurrenciesArray = self::getCurrenciesFromApi();
         $currenciesArray = [];
-        $jsonCurrencies = Curl::to('https://api.coinmarketcap.com/v2/ticker/?start=1&limit='. self::COUNT)
+        $response = Curl::to('https://api.coinmarketcap.com/v2/ticker/?start=1&limit='. self::COUNT)
             ->get();
-        $apiCurrenciesArray = json_decode($jsonCurrencies, true);
+        $apiCurrenciesArray = json_decode($response, true);
 
-        if ($jsonCurrencies && isset($apiCurrenciesArray['data'])) {
+        if ($response && isset($apiCurrenciesArray['data'])) {
             foreach ($apiCurrenciesArray['data'] as $currency) {
                 $currenciesArray[] = new Currency(
                     $currency['id'],

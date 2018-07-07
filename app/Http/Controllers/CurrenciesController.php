@@ -9,13 +9,23 @@ use App\Services\CurrencyPresenter;
 
 class CurrenciesController extends Controller
 {
+    /**
+     * @var CurrencyRepositoryInterface
+     */
     protected $currencyRepository;
-    
+
+    /**
+     * CurrenciesController constructor.
+     * @param CurrencyRepositoryInterface $currencyRepository
+     */
     public function __construct(CurrencyRepositoryInterface $currencyRepository)
     {
         $this->currencyRepository = $currencyRepository;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getPopularCurrencies()
     {
         $currencies = (new GetPopularCurrenciesCommandHandler($this->currencyRepository))->handle();

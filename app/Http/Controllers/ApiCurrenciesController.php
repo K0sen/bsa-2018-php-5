@@ -7,14 +7,20 @@ use App\Services\CurrencyPresenter;
 
 class ApiCurrenciesController extends CurrenciesController
 {
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getApiUnstableCurrency()
     {
         $currencyArray = (new GetMostChangedCurrencyCommandHandler($this->currencyRepository))->handle();
         $currencies = CurrencyPresenter::present($currencyArray);
 
-        return $currencies;
+        return response()->json($currencies);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getApiCurrencies()
     {
         $currencyArray = $this->currencyRepository->findAll();
@@ -23,6 +29,6 @@ class ApiCurrenciesController extends CurrenciesController
             $currencies[] = CurrencyPresenter::present($currency);
         }
 
-        return $currencies;
+        return response()->json($currencies);
     }
 }

@@ -10,6 +10,14 @@ class Currency
     protected $imageUrl;
     protected $dailyChangePercent;
 
+    /**
+     * Currency constructor.
+     * @param int    $id
+     * @param string $name
+     * @param float  $price
+     * @param string $imageUrl
+     * @param float  $dailyChangePercent
+     */
     public function __construct(int $id, string $name, float $price, string $imageUrl, float $dailyChangePercent)
     {
         $this->id = $id;
