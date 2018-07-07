@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
-class GetCurrenciesCommandHandler
+class GetCurrenciesCommandHandler extends AbstractCurrenciesCommandHandler
 {
+    /**
+     * @return array
+     */
     public function handle(): array
     {
-        // todo implement
+        return $this->currencyRepository->findAll();
     }
 }

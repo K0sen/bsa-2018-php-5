@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Services\AbstractCurrenciesCommandHandler;
+use App\Services\CurrencyGenerator;
+use App\Services\CurrencyRepository;
+use App\Services\CurrencyRepositoryInterface;
+use App\Services\GetCurrenciesCommandHandler;
+use App\Services\GetMostChangedCurrencyCommandHandler;
+use App\Services\GetPopularCurrenciesCommandHandler;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(CurrencyRepositoryInterface::class, CurrencyRepository::class);
     }
 
     /**
@@ -23,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(CurrencyRepository::class, function() {
+            return new CurrencyRepository(CurrencyGenerator::generate());
+        });
     }
 }

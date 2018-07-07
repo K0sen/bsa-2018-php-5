@@ -4,8 +4,18 @@ namespace App\Services;
 
 class CurrencyPresenter
 {
+    /**
+     * @param Currency $currency
+     * @return array
+     */
     public static function present(Currency $currency): array
     {
-        // todo implement
+        return [
+            'id' => $currency->getId(),
+            'name' => $currency->getName(),
+            'price' => $currency->getPrice(),
+            'img'  => $currency->getImageUrl(),
+            'daily_change' => $currency->getDailyChangePercent()
+        ];
     }
 }
