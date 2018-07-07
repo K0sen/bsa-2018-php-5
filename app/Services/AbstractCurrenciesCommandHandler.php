@@ -14,10 +14,9 @@ abstract class AbstractCurrenciesCommandHandler
      *
      * @param CurrencyRepositoryInterface $currencyRepository
      */
-    public function __construct(CurrencyRepositoryInterface $currencyRepository) {
-
+    public function __construct(CurrencyRepositoryInterface $currencyRepository)
+    {
         $this->currencyRepository = $currencyRepository;
-
     }
 
     abstract public function handle();

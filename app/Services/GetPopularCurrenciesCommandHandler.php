@@ -13,7 +13,7 @@ class GetPopularCurrenciesCommandHandler extends AbstractCurrenciesCommandHandle
     public function handle(int $count = self::POPULAR_COUNT): array
     {
         $currencies = $this->currencyRepository->findAll();
-        usort($currencies, function($firstCurrency, $secondCurrency)  {
+        usort($currencies, function ($firstCurrency, $secondCurrency) {
             /** @var $firstCurrency Currency **/
             /** @var $secondCurrency Currency **/
             return ($firstCurrency->getPrice() < $secondCurrency->getPrice()) ? 1 : -1;

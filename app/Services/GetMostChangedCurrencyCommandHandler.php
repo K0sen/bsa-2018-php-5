@@ -10,7 +10,7 @@ class GetMostChangedCurrencyCommandHandler extends AbstractCurrenciesCommandHand
     public function handle(): Currency
     {
         $currencies = $this->currencyRepository->findAll();
-        usort($currencies, function($firstCurrency, $secondCurrency)  {
+        usort($currencies, function ($firstCurrency, $secondCurrency) {
             /** @var $firstCurrency Currency **/
             /** @var $secondCurrency Currency **/
             return (abs($firstCurrency->getDailyChangePercent()) < abs($secondCurrency->getDailyChangePercent())) ? 1 : -1;
