@@ -6,8 +6,8 @@ use Ixudra\Curl\Facades\Curl;
 
 class CurrencyGenerator
 {
-    public const IMG_PREFIX = "https://s2.coinmarketcap.com/static/img/coins/64x64/";
     private const COUNT = 10;
+    public const IMG_PREFIX = "https://s2.coinmarketcap.com/static/img/coins/64x64/";
 
     /**
      * Gets list of cryptocurrencies from api of coinmarketcap.com
@@ -32,23 +32,29 @@ class CurrencyGenerator
                     $currency['quotes']['USD']['percent_change_24h']
                 );
             }
-        } else {
-            $currenciesArray = [
-                new Currency(1, "Bitcoin", 6620.92, self::IMG_PREFIX ."1.png", 0.16),
-                new Currency(1027, "Ethereum", 471.934, self::IMG_PREFIX ."1027.png", 0.07),
-                new Currency(52, "XRP", 0.470266, self::IMG_PREFIX ."52.png", -0.38),
-                new Currency(1831, "Bitcoin Cash", 725.873, self::IMG_PREFIX ."1831.png", 0.2),
-                new Currency(1765, "EOS", 8.56014, self::IMG_PREFIX ."1765.png", 0.69),
-                new Currency(2, "Litecoin", 81.8338, self::IMG_PREFIX ."2.png", -1.53),
-                new Currency(512, "Stellar", 0.203054, self::IMG_PREFIX ."512.png", -1.28),
-                new Currency(2010, "Cardano", 0.140243, self::IMG_PREFIX ."2010.png", -2.64),
-                new Currency(1720, "IOTA", 1.05374, self::IMG_PREFIX ."1720.png", 0.07),
-                new Currency(825, "Tether", 1.00384, self::IMG_PREFIX ."825.png", -0.15)
-            ];
+
+            return $currenciesArray;
         }
 
-        return $currenciesArray;
+        return self::getMockCurrencies();
     }
+
+    private static function getMockCurrencies()
+    {
+        return [
+            new Currency(1, "Bitcoin", 6620.92, self::IMG_PREFIX ."1.png", 0.16),
+            new Currency(1027, "Ethereum", 471.934, self::IMG_PREFIX ."1027.png", 0.07),
+            new Currency(52, "XRP", 0.470266, self::IMG_PREFIX ."52.png", -0.38),
+            new Currency(1831, "Bitcoin Cash", 725.873, self::IMG_PREFIX ."1831.png", 0.2),
+            new Currency(1765, "EOS", 8.56014, self::IMG_PREFIX ."1765.png", 0.69),
+            new Currency(2, "Litecoin", 81.8338, self::IMG_PREFIX ."2.png", -1.53),
+            new Currency(512, "Stellar", 0.203054, self::IMG_PREFIX ."512.png", -1.28),
+            new Currency(2010, "Cardano", 0.140243, self::IMG_PREFIX ."2010.png", -2.64),
+            new Currency(1720, "IOTA", 1.05374, self::IMG_PREFIX ."1720.png", 0.07),
+            new Currency(825, "Tether", 1.00384, self::IMG_PREFIX ."825.png", -0.15)
+        ];
+    }
+
 
     private static function getCurrenciesFromApi()
     {

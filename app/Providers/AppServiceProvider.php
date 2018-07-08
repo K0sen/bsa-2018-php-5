@@ -2,13 +2,9 @@
 
 namespace App\Providers;
 
-use App\Services\AbstractCurrenciesCommandHandler;
 use App\Services\CurrencyGenerator;
 use App\Services\CurrencyRepository;
 use App\Services\CurrencyRepositoryInterface;
-use App\Services\GetCurrenciesCommandHandler;
-use App\Services\GetMostChangedCurrencyCommandHandler;
-use App\Services\GetPopularCurrenciesCommandHandler;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
