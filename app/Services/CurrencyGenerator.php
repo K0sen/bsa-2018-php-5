@@ -6,7 +6,9 @@ use Ixudra\Curl\Facades\Curl;
 
 class CurrencyGenerator
 {
+    /** Count of currency you want to have from API */
     private const COUNT = 10;
+    private const API_LINK = 'https://api.coinmarketcap.com/v2/ticker/';
     public const IMG_PREFIX = "https://s2.coinmarketcap.com/static/img/coins/64x64/";
 
     /**
@@ -18,8 +20,7 @@ class CurrencyGenerator
     {
 //        $apiCurrenciesArray = self::getCurrenciesFromApi();
         $currenciesArray = [];
-        $response = Curl::to('https://api.coinmarketcap.com/v2/ticker/?start=1&limit='. self::COUNT)
-            ->get();
+        $response = Curl::to(self::API_LINK . '?start=1&limit=' . self::COUNT)->get();
         $apiCurrenciesArray = json_decode($response, true);
 
         if ($response && isset($apiCurrenciesArray['data'])) {
@@ -39,6 +40,9 @@ class CurrencyGenerator
         return self::getMockCurrencies();
     }
 
+    /**
+     * @return array
+     */
     private static function getMockCurrencies()
     {
         return [
@@ -56,6 +60,9 @@ class CurrencyGenerator
     }
 
 
+    /**
+     * @return array
+     */
     private static function getCurrenciesFromApi()
     {
         $curl = curl_init();

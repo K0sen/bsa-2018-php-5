@@ -7,6 +7,8 @@ class GetPopularCurrenciesCommandHandler extends AbstractCurrenciesCommandHandle
     const POPULAR_COUNT = 3;
 
     /**
+     * Returns most popular currencies for 24h currency
+     *
      * @param int $count
      * @return array
      */
@@ -14,8 +16,8 @@ class GetPopularCurrenciesCommandHandler extends AbstractCurrenciesCommandHandle
     {
         $currencies = $this->currencyRepository->findAll();
         usort($currencies, function ($firstCurrency, $secondCurrency) {
-            /** @var $firstCurrency Currency **/
-            /** @var $secondCurrency Currency **/
+            /** @var $firstCurrency Currency */
+            /** @var $secondCurrency Currency */
             return ($firstCurrency->getPrice() < $secondCurrency->getPrice()) ? 1 : -1;
         });
 

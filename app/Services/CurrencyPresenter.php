@@ -5,6 +5,8 @@ namespace App\Services;
 class CurrencyPresenter
 {
     /**
+     * Returns currency as array with convenient field names
+     *
      * @param Currency $currency
      * @return array
      */
