@@ -5,7 +5,7 @@ namespace App\Services;
 class GetMostChangedCurrencyCommandHandler extends AbstractCurrenciesCommandHandler
 {
     /**
-     * Returns most changes for 24h currency
+     * Returns most changed for 24h currency
      *
      * @return Currency
      */
